@@ -10,24 +10,26 @@
       url = "github:clemenscodes/rpcs3";
     };
   };
-  outputs = inputs:
-    with inputs;
-      flake-parts.lib.mkFlake {inherit inputs;} {
-        systems = [
-          "x86_64-linux"
-          "aarch64-linux"
-        ];
-        perSystem = {
-          pkgs,
-          system,
-          ...
-        }: let
-          inherit (pkgs) lib;
-        in {
-          nixosModules = {
+
+  outputs = {
+    nixpkgs,
+    flake-parts,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {inherit system;};
+    inherit (pkgs) lib;
+  in
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      flake = {
+        nixosModules = {
+          ${system} = {
             default = import ./modules {inherit inputs lib pkgs system;};
           };
-          formatter = pkgs.alejandra;
         };
       };
+      perSystem = {...}: {
+        formatter = pkgs.alejandra;
+      };
+    };
 }
