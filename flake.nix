@@ -24,10 +24,10 @@
         }: let
           inherit (pkgs) lib;
         in {
-          formatter = pkgs.alejandra;
           nixosModules = {
             default = import ./modules {inherit inputs lib pkgs system;};
           };
+          formatter = pkgs.alejandra;
         };
       };
 }
