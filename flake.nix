@@ -6,6 +6,9 @@
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
     };
+    rpcs3 = {
+      url = "github:clemenscodes/rpcs3";
+    };
   };
   outputs = inputs:
     with inputs;
@@ -23,7 +26,7 @@
         in {
           formatter = pkgs.alejandra;
           nixosModules = {
-            default = import ./modules {inherit inputs lib pkgs;};
+            default = import ./modules {inherit inputs lib pkgs system;};
           };
         };
       };

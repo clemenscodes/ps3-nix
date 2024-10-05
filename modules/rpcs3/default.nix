@@ -2,6 +2,7 @@
   inputs,
   lib,
   pkgs,
+  system,
   ...
 }:
 with lib;
@@ -14,7 +15,7 @@ with lib;
         enable = mkEnableOption "Enable PlayStation 3 emulation using RPCS3" // {default = false;};
         package = mkOption {
           type = types.package;
-          default = pkgs.rpcs3;
+          default = inputs.rpcs3.packages.${system}.default;
         };
       };
     };
