@@ -23,9 +23,7 @@
     flake-parts.lib.mkFlake {inherit inputs;} {
       flake = {
         nixosModules = {
-          ${system} = {
-            default = import ./modules {inherit inputs lib pkgs system;};
-          };
+          default = import ./modules {inherit inputs lib pkgs system;};
         };
       };
       perSystem = {...}: {
