@@ -7,7 +7,7 @@
 }:
 with lib;
   {config, ...}: let
-    cfg = config.gaming.playstation3;
+    cfg = config.playstation3;
     ps3bios = import ./firmware {inherit pkgs;};
   in {
     imports = [
