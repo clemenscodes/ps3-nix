@@ -22,7 +22,7 @@
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       flake = {
-        nixosModules = {
+        homeManagerModules = {
           default = import ./modules {inherit inputs lib pkgs system;};
         };
       };
