@@ -8,6 +8,8 @@
 with lib;
   {config, ...}: let
     cfg = config.playstation3.uncharted-reloaded;
+    iso = /mnt/games/uncharted-3-drakes-deception-game-of-the-year-edition-bcus-99086/Uncharted_3_GOTY_BCUS99086_.iso;
+    game = import ./game.nix {inherit pkgs iso;};
   in {
     options = {
       playstation3 = {
@@ -24,10 +26,8 @@ with lib;
     config = mkIf (cfg.enable) {
       home = {
         file = {
-          ".config/rpcs3/test.yml" = {
-            text = ''
-              {}
-            '';
+          ".config/rpcs3/games/u3/" = {
+            source = game;
           };
         };
       };
