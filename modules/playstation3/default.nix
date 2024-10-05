@@ -24,6 +24,7 @@ with lib;
     };
     config = mkIf (cfg.enable) {
       home = {
+        packages = [cfg.package];
         file = {
           ".config/rpcs3/bios" = {
             source = "${ps3bios}/bios";
