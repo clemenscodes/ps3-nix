@@ -31,12 +31,6 @@
       };
       perSystem = {...}: {
         formatter = pkgs.alejandra;
-        packages = {
-          game = import ./modules/playstation3/uncharted-reloaded/game.nix {
-            inherit pkgs;
-            iso = /mnt/games/uncharted-3-drakes-deception-game-of-the-year-edition-bcus-99086/Uncharted_3_GOTY_BCUS99086_.iso;
-          };
-        };
       };
     };
 }
